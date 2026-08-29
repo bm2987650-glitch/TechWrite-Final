@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Write - Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="new-admin.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <i class="fa-solid fa-bolt brand-icon"></i>
+      <span class="brand-name">Tech <span>Write</span></span>
+    </div>
+    <a href="../main.html" class="nav-item" style="margin:0 10px 6px;font-size:0.8rem;">
+      <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>View Live Site</span>
+    </a>
+
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active" data-tab="dashboard">
+        <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="review">
+        <i class="fa-solid fa-clipboard-check"></i> <span>Review Queue</span>
+        <span class="badge-count" id="reviewCountBadge">0</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="articles">
+        <i class="fa-solid fa-file-lines"></i> <span>All Articles</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="categories">
+        <i class="fa-solid fa-folder-tree"></i> <span>Categories</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="media">
+        <i class="fa-solid fa-images"></i> <span>Media</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="comments">
+        <i class="fa-solid fa-comments"></i> <span>Comments</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="users">
+        <i class="fa-solid fa-users"></i> <span>Users</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="payouts">
+        <i class="fa-solid fa-sack-dollar"></i> <span>Payouts</span>
+        <span class="badge-count" id="payoutCountBadge">0</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="newsletter">
+        <i class="fa-solid fa-newspaper"></i> <span>Newsletter</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="settings">
+        <i class="fa-solid fa-gear"></i> <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../main.html" id="logoutLink" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Top Header -->
+    <header class="top-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="header-right">
+        <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
+        <div class="user-profile-dropdown" id="userDropdown">
+          <img src="https://i.pravatar.cc/100?img=68" alt="Admin" class="avatar" />
+          <div class="user-info">
+            <span class="user-role">Administrator</span>
+            <span class="user-name">Site Admin <i class="fa-solid fa-chevron-down"></i></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-body">
+      <!-- 1. DASHBOARD TAB -->
+      <section class="tab-content active" id="tab-dashboard">
+        <h1 class="page-title">Welcome back, Admin!</h1>
+
+        <div class="stats-grid">
+          <div class="stat-card card-teal">
+            <div class="stat-header">
+              <span class="stat-title">Total Articles</span>
+              <i class="fa-solid fa-file-lines"></i>
+            </div>
+            <div class="stat-value" id="statTotalArticles">125</div>
+            <div class="stat-sub">Across all authors</div>
+          </div>
+          <div class="stat-card card-light-green">
+            <div class="stat-header">
+              <span class="stat-title">Pending Review</span>
+              <span class="pill-count" id="statPendingReview">3</span>
+            </div>
+            <div class="stat-value" id="statPendingReviewValue">3</div>
+            <div class="stat-sub">Awaiting your approval</div>
+          </div>
+          <div class="stat-card card-beige">
+            <div class="stat-header"><span class="stat-title">Total Users</span></div>
+            <div class="stat-value" id="statTotalUsers">0</div>
+            <div class="stat-sub">Writers &amp; readers</div>
+          </div>
+          <div class="stat-card card-pink">
+            <div class="stat-header"><span class="stat-title">Total Views</span></div>
+            <div class="stat-value" id="statTotalViews">0</div>
+          </div>
+          <div class="stat-card card-light-blue">
+            <div class="stat-header">
+              <span class="stat-title">Pending Payouts</span>
+              <i class="fa-solid fa-sack-dollar"></i>
+            </div>
+            <div class="stat-value" id="statPendingPayouts">$0.00</div>
+            <div class="stat-sub" id="statPendingPayoutsCount">0 requests</div>
+          </div>
+          <div class="stat-card card-purple">
+            <div class="stat-header"><span class="stat-title">Paid Out (All Time)</span></div>
+            <div class="stat-value" id="statPaidOut">$0.00</div>
+          </div>
+        </div>
+
+        <div class="dashboard-panels">
+          <div class="panel attention-panel">
+            <h3>Needs Your Attention</h3>
+            <div class="attention-list" id="attentionList">
+              <!-- populated by admin.js -->
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Recent Activity</h3>
+            <ul class="activity-list">
+              <li>
+                <i class="fa-solid fa-paper-plane activity-icon warning"></i>
+                <div>
+                  <strong>Sarah Writer</strong> submitted "Top AI Tools Academic Review" for review
+                  <span class="time-ago">1 hr ago</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check activity-icon success"></i>
+                <div>
+                  <strong>Alex Morgan</strong> published "10 Best AI Writing Tools in 2026"
+                  <span class="badge badge-published">Published</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-sack-dollar activity-icon"></i>
+                <div>
+                  <strong>John Doe</strong> requested a payout of $1.00
+                  <span class="time-ago">Today</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="admin-card" style="margin-top:20px" >
+          <h3>Views Overview <span class="muted" style="float:right">This Week</span></h3>
+          <div class="chart">
+            <div class="bar" style="height:35%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:42%"></div>
+            <div class="bar" style="height:82%"></div>
+            <div class="bar" style="height:57%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:48%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. REVIEW QUEUE TAB -->
+      <section class="tab-content" id="tab-review">
+        <div class="articles-header">
+          <h1>Review Queue</h1>
+        </div>
+        <p class="text-muted font-sm" style="margin-top:-14px;margin-bottom:18px">
+          Articles submitted by writers wait here until you approve them, ask for changes, or reject them. Approved
+          articles go live immediately; a comment is sent back to the author for anything that needs changes.
+        </p>
+
+        <div id="reviewQueueList">
+          <!-- populated by admin.js from #articlesTableBody data -->
+        </div>
+      </section>
+
+      <!-- 3. ALL ARTICLES TAB -->
+      <section class="tab-content" id="tab-articles">
+        <div class="articles-header">
+          <h1>All Articles</h1>
+        </div>
+
+        <div class="table-filters">
+          <input type="text" id="articleSearchInput" placeholder="Search title or author..." class="form-control" />
+
+          <select class="form-select" id="articleStatusFilter">
+            <option value="all">All Status</option>
+            <option value="published">Published</option>
+            <option value="review">Pending Review</option>
+            <option value="changes">Changes Requested</option>
+            <option value="draft">Draft</option>
+          </select>
+
+          <select class="form-select" id="articleAuthorFilter">
+            <option value="all">All Authors</option>
+            <option value="Alex Morgan">Alex Morgan</option>
+            <option value="Sarah Writer">Sarah Writer</option>
+            <option value="John Doe">John Doe</option>
+          </select>
+
+          <select class="form-select" id="articleCategoryFilter">
+            <option value="all">All Categories</option>
+            <option value="AI Tools">AI Tools</option>
+            <option value="Guides">Guides</option>
+            <option value="Technology">Technology</option>
+            <option value="AI Image">AI Image</option>
+            <option value="Tutorials">Tutorials</option>
+            <option value="Productivity">Productivity</option>
+            <option value="News">News</option>
+            <option value="Reviews">Reviews</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Views</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="articlesTableBody">
+              <tr data-status="published" data-title="10 Best AI Writing Tools in 2026" data-author="Alex Morgan"
+                data-category="AI Tools" data-views="5430" data-date="2026-05-12"
+                data-content="A roundup of the best AI writing tools available in 2026, with practical use cases for each.">
+                <td><strong>10 Best AI Writing Tools in 2026</strong></td>
+                <td>Alex Morgan</td>
+                <td><span class="badge badge-tag">AI Tools</span></td>
+                <td><span class="badge badge-published">Published</span></td>
+                <td>5,430</td>
+                <td>May 12, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+              <tr data-status="published" data-title="ChatGPT Complete Guide for Beginners" data-author="Alex Morgan"
+                data-category="Guides" data-views="4520" data-date="2026-05-10"
+                data-content="Everything a beginner needs to know to get started with ChatGPT, step by step.">
+                <td><strong>ChatGPT Complete Guide for Beginners</strong></td>
+                <td>Alex Morgan</td>
+                <td><span class="badge badge-tag">Guides</span></td>
+                <td><span class="badge badge-published">Published</span></td>
+                <td>4,520</td>
+                <td>May 10, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+              <tr data-status="published" data-title="Top 7 AI Image Generators" data-author="Sarah Writer"
+                data-category="AI Image" data-views="3985" data-date="2026-05-08"
+                data-content="A hands-on comparison of the seven most capable AI image generators on the market today.">
+                <td><strong>Top 7 AI Image Generators</strong></td>
+                <td>Sarah Writer</td>
+                <td><span class="badge badge-tag">AI Image</span></td>
+                <td><span class="badge badge-published">Published</span></td>
+                <td>3,985</td>
+                <td>May 8, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+              <tr data-status="review" data-title="Top AI Tools Academic Review" data-author="Sarah Writer"
+                data-category="Guides" data-views="150" data-date="2026-08-20"
+                data-content="Comprehensive academic breakdown of leading AI tools available for modern content creation.">
+                <td><strong>Top AI Tools Academic Review</strong></td>
+                <td>Sarah Writer</td>
+                <td><span class="badge badge-tag">Guides</span></td>
+                <td><span class="badge badge-warning">Pending Review</span></td>
+                <td>150</td>
+                <td>Aug 20, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+              <tr data-status="review" data-title="My Recent Article Test" data-author="John Doe"
+                data-category="AI Tools" data-views="235" data-date="2026-08-21"
+                data-content="This is the full article body text for My Recent Article Test. Detailed insights on web development and design.">
+                <td><strong>My Recent Article Test</strong></td>
+                <td>John Doe</td>
+                <td><span class="badge badge-tag">AI Tools</span></td>
+                <td><span class="badge badge-warning">Pending Review</span></td>
+                <td>235</td>
+                <td>Aug 21, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+              <tr data-status="draft" data-title="Best Free AI Tools You Should Try" data-author="Alex Morgan"
+                data-category="AI Tools" data-views="0" data-date="2026-05-05"
+                data-content="A running list of free AI tools worth trying this year.">
+                <td><strong>Best Free AI Tools You Should Try</strong></td>
+                <td>Alex Morgan</td>
+                <td><span class="badge badge-tag">AI Tools</span></td>
+                <td><span class="badge draft">Draft</span></td>
+                <td>0</td>
+                <td>May 5, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. CATEGORIES TAB -->
+      <section class="tab-content" id="tab-categories">
+        <div class="articles-header">
+          <h1>Categories</h1>
+          <button id="addCategory" class="btn btn-primary">+ Add New Category</button>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="categoryTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Article Count</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AI Tools</td>
+                <td>45</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Guides</td>
+                <td>32</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Technology</td>
+                <td>38</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>AI Image</td>
+                <td>28</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Tutorials</td>
+                <td>41</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Productivity</td>
+                <td>26</td>
+                <td>May 1, 2026</td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-edit>Edit</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. MEDIA TAB -->
+      <section class="tab-content" id="tab-media">
+        <div class="articles-header">
+          <h1>Media Library</h1>
+          <label class="btn btn-primary" style="cursor:pointer">
+            + Upload Media
+            <input id="mediaUpload" type="file" accept="image/*" multiple hidden>
+          </label>
+        </div>
+        <p class="text-muted font-sm" style="margin-top:-14px;margin-bottom:18px">
+          Manage featured images and other media used across every author's articles.
+        </p>
+        <div id="mediaGrid" class="media-grid">
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-1.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1676299081847-824916de030a?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-2.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1686191128892-3c8a4c2d2d7d?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-3.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-4.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-5.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-6.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=85" alt="">
+            <div class="media-name">article-image-7.jpg</div>
+          </div>
+          <div class="media-card">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="">
+            <div class="media-name">article-image-8.jpg</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. COMMENTS TAB -->
+      <section class="tab-content" id="tab-comments">
+        <div class="articles-header">
+          <h1>Comments</h1>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="commentsTable">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Comment</th>
+                <th>Article</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-status="approved">
+                <td>Sarah</td>
+                <td>Very useful article!</td>
+                <td>AI Writing Tools</td>
+                <td><span class="badge badge-published">Approved</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-approve-comment>Approve</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+              <tr data-status="pending">
+                <td>John</td>
+                <td>Thanks for the guide.</td>
+                <td>ChatGPT Guide</td>
+                <td><span class="badge draft">Pending</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline" data-approve-comment>Approve</button>
+                  <button class="btn btn-sm btn-danger" data-delete>Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 7. USERS TAB -->
+      <section class="tab-content" id="tab-users">
+        <div class="articles-header">
+          <h1>Users</h1>
+        </div>
+        <p class="text-muted font-sm" style="margin-top:-14px;margin-bottom:18px">
+          View every writer's work, change their role, or suspend an account. Admin and Editor roles can be granted
+          from here.
+        </p>
+        <div class="table-responsive">
+          <table class="data-table" id="usersTable">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Articles</th>
+                <th>Followers</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-username="Site Admin" data-status="active">
+                <td>
+                  <div class="user-cell">
+                    <img src="https://i.pravatar.cc/100?img=68" alt="">
+                    <div>
+                      <div class="user-cell-name">Site Admin</div>
+                      <div class="user-cell-email">admin@techwrite.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="role-badge role-admin">Admin</span></td>
+                <td>0</td>
+                <td>—</td>
+                <td>May 1, 2026</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline" disabled>You</button>
+                </td>
+              </tr>
+              <tr data-username="Alex Morgan" data-status="active">
+                <td>
+                  <div class="user-cell">
+                    <img src="https://i.pravatar.cc/100?img=12" alt="">
+                    <div>
+                      <div class="user-cell-name">Alex Morgan</div>
+                      <div class="user-cell-email">alex.morgan@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <select class="form-select user-role-select">
+                    <option value="writer">Writer</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </td>
+                <td>3</td>
+                <td>1,215</td>
+                <td>May 4, 2026</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-user-articles">View Work</button>
+                  <button class="btn btn-sm btn-danger btn-toggle-suspend">Suspend</button>
+                </td>
+              </tr>
+              <tr data-username="Sarah Writer" data-status="active">
+                <td>
+                  <div class="user-cell">
+                    <img src="https://i.pravatar.cc/100?img=47" alt="">
+                    <div>
+                      <div class="user-cell-name">Sarah Writer</div>
+                      <div class="user-cell-email">sarah@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <select class="form-select user-role-select">
+                    <option value="writer" selected>Writer</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </td>
+                <td>2</td>
+                <td>640</td>
+                <td>May 6, 2026</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-user-articles">View Work</button>
+                  <button class="btn btn-sm btn-danger btn-toggle-suspend">Suspend</button>
+                </td>
+              </tr>
+              <tr data-username="John Doe" data-status="active">
+                <td>
+                  <div class="user-cell">
+                    <img src="https://i.pravatar.cc/100?img=33" alt="">
+                    <div>
+                      <div class="user-cell-name">John Doe</div>
+                      <div class="user-cell-email">john@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <select class="form-select user-role-select">
+                    <option value="writer" selected>Writer</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </td>
+                <td>1</td>
+                <td>84</td>
+                <td>Jun 2, 2026</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-view-user-articles">View Work</button>
+                  <button class="btn btn-sm btn-danger btn-toggle-suspend">Suspend</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 8. PAYOUTS TAB -->
+      <section class="tab-content" id="tab-payouts">
+        <div class="articles-header">
+          <h1>Payouts</h1>
+        </div>
+        <p class="text-muted font-sm" style="margin-top:-14px;margin-bottom:18px">
+          Review payout requests from writers and release payment to the account or method they have on file.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card card-teal">
+            <span class="stat-title">Pending Requests</span>
+            <div class="stat-value" id="payoutPendingCount">2</div>
+          </div>
+          <div class="stat-card card-light-green">
+            <span class="stat-title">Pending Amount</span>
+            <div class="stat-value" id="payoutPendingAmount">$19.00</div>
+          </div>
+          <div class="stat-card card-beige">
+            <span class="stat-title">Paid Out (All Time)</span>
+            <div class="stat-value">$18.00</div>
+          </div>
+          <div class="stat-card card-pink">
+            <span class="stat-title">Last Release</span>
+            <div class="stat-value">Jul 18</div>
+          </div>
+        </div>
+
+        <div class="panel mt-4">
+          <div class="panel-header">
+            <h3>Payout Requests</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table" id="payoutsTable">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Requested</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="pending" data-user="John Doe" data-amount="1.00" data-method="paypal"
+                  data-paypal-email="john.doe@paypal.com">
+                  <td>
+                    <div class="user-cell">
+                      <img src="https://i.pravatar.cc/100?img=33" alt="">
+                      <div class="user-cell-name">John Doe</div>
+                    </div>
+                  </td>
+                  <td>Aug 22, 2026</td>
+                  <td class="fw-bold">$1.00</td>
+                  <td>
+                    <div class="payout-method-cell"><i class="fa-brands fa-paypal"></i> PayPal</div>
+                  </td>
+                  <td><span class="badge badge-pending">Pending</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline btn-view-payout-method">View Method</button>
+                    <button class="btn btn-sm btn-approve btn-release-payout">Release Payment</button>
+                  </td>
+                </tr>
+                <tr data-status="pending" data-user="Sarah Writer" data-amount="18.00" data-method="bank"
+                  data-bank-name="Habib Bank Limited (HBL)" data-bank-iban="PK36SCBL0000001123456701"
+                  data-bank-swift="SCBLPKKK" data-bank-holder="Sarah Writer">
+                  <td>
+                    <div class="user-cell">
+                      <img src="https://i.pravatar.cc/100?img=47" alt="">
+                      <div class="user-cell-name">Sarah Writer</div>
+                    </div>
+                  </td>
+                  <td>Aug 20, 2026</td>
+                  <td class="fw-bold">$18.00</td>
+                  <td>
+                    <div class="payout-method-cell"><i class="fa-solid fa-building-columns"></i> Bank Transfer</div>
+                  </td>
+                  <td><span class="badge badge-pending">Pending</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline btn-view-payout-method">View Method</button>
+                    <button class="btn btn-sm btn-approve btn-release-payout">Release Payment</button>
+                  </td>
+                </tr>
+                <tr data-status="completed" data-user="Alex Morgan" data-amount="18.00" data-method="paypal"
+                  data-paypal-email="alex.morgan@paypal.com">
+                  <td>
+                    <div class="user-cell">
+                      <img src="https://i.pravatar.cc/100?img=12" alt="">
+                      <div class="user-cell-name">Alex Morgan</div>
+                    </div>
+                  </td>
+                  <td>Jul 18, 2026</td>
+                  <td class="fw-bold">$18.00</td>
+                  <td>
+                    <div class="payout-method-cell"><i class="fa-brands fa-paypal"></i> PayPal</div>
+                  </td>
+                  <td><span class="badge badge-completed">Completed</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline btn-view-payout-method">View Method</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. NEWSLETTER TAB -->
+      <section class="tab-content" id="tab-newsletter">
+        <div class="articles-header">
+          <h1>Newsletter</h1>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Subscribers</h3>
+            <span class="text-muted font-sm" id="subscriberCount">2 active</span>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="subscribersTableBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel mt-4">
+          <h3 class="mb-3">Send a Broadcast</h3>
+          <div class="form-group mb-3">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-control w-100" id="newsletterSubject" placeholder="e.g. This week on Tech Write">
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control w-100 content-textarea" id="newsletterBody" rows="6" placeholder="Write your update..."></textarea>
+          </div>
+          <button class="btn btn-primary" id="btnSendNewsletter">Send to Subscribers</button>
+        </div>
+      </section>
+
+      <!-- 10. SETTINGS TAB -->
+      <section class="tab-content" id="tab-settings">
+        <div class="articles-header">
+          <h1>Settings</h1>
+        </div>
+
+        <div class="panel mb-4">
+          <h3 class="mb-3">Site Settings</h3>
+          <div class="form-group mb-3">
+            <label class="form-label">Website Name</label>
+            <input type="text" class="form-control w-100" id="settingSiteName" value="TechWrite">
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Website Description</label>
+            <textarea class="form-control w-100" id="settingSiteDescription" rows="3">Practical technology content for curious readers.</textarea>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Require admin approval before publishing</label>
+            <label class="switch">
+              <input type="checkbox" id="settingRequireApproval" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <button class="btn btn-primary" id="btnSaveSettings">Save Settings</button>
+          <span id="settingsSaveStatus" class="ms-2 font-sm" style="display:none;color:#155724;margin-left:10px;"></span>
+        </div>
+
+        <!-- Roles & Permissions -->
+        <div class="panel mb-4">
+          <h3 class="mb-2">Roles & Permissions</h3>
+          <p class="text-muted font-sm mb-2">
+            Control what each role can do. This governs access as the team grows, so you can safely hand off parts of
+            the workflow (like article review or media management) without giving out full admin rights.
+          </p>
+          <div class="permission-grid" id="permissionGrid">
+            <div class="permission-item">
+              <div>
+                <strong>Manage Articles</strong>
+                <div class="text-muted">Create, edit, publish and delete articles</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" checked data-permission="articles" data-role="editor"> Editor</label>
+                <label><input type="checkbox" data-permission="articles" data-role="writer"> Writer</label>
+              </div>
+            </div>
+            <div class="permission-item">
+              <div>
+                <strong>Review & Approve Submissions</strong>
+                <div class="text-muted">Approve, request changes, or reject submitted articles</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" checked data-permission="review" data-role="editor"> Editor</label>
+                <label><input type="checkbox" disabled data-permission="review" data-role="writer"> Writer</label>
+              </div>
+            </div>
+            <div class="permission-item">
+              <div>
+                <strong>Manage Categories & Media</strong>
+                <div class="text-muted">Add, edit, or remove categories and media library items</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" checked data-permission="taxonomy" data-role="editor"> Editor</label>
+                <label><input type="checkbox" disabled data-permission="taxonomy" data-role="writer"> Writer</label>
+              </div>
+            </div>
+            <div class="permission-item">
+              <div>
+                <strong>Manage Users</strong>
+                <div class="text-muted">Change roles, suspend accounts, view user activity</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" data-permission="users" data-role="editor"> Editor</label>
+                <label><input type="checkbox" disabled data-permission="users" data-role="writer"> Writer</label>
+              </div>
+            </div>
+            <div class="permission-item">
+              <div>
+                <strong>Manage Payouts</strong>
+                <div class="text-muted">View payment methods and release payouts to writers</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" data-permission="payouts" data-role="editor"> Editor</label>
+                <label><input type="checkbox" disabled data-permission="payouts" data-role="writer"> Writer</label>
+              </div>
+            </div>
+            <div class="permission-item">
+              <div>
+                <strong>Manage Site Settings</strong>
+                <div class="text-muted">Change site name, description, and platform-wide options</div>
+              </div>
+              <div class="role-columns">
+                <label><input type="checkbox" checked disabled> Admin</label>
+                <label><input type="checkbox" disabled data-permission="settings" data-role="editor"> Editor</label>
+                <label><input type="checkbox" disabled data-permission="settings" data-role="writer"> Writer</label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline mt-3" id="btnSavePermissions">Save Permissions</button>
+        </div>
+
+        <!-- Add Team Member -->
+        <div class="panel">
+          <h3 class="mb-3">Add Team Member</h3>
+          <p class="text-muted font-sm mb-3">Invite a new writer, editor, or admin to help manage the site.</p>
+          <form id="addTeamMemberForm">
+            <div class="form-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control w-100" id="newMemberName" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control w-100" id="newMemberEmail" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Role</label>
+                <select class="form-select w-100" id="newMemberRole">
+                  <option value="writer">Writer</option>
+                  <option value="editor">Editor</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Send Invite</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- REQUEST CHANGES MODAL (Review Queue) -->
+  <div class="modal-overlay" id="changesModalOverlay">
+    <div class="modal-content max-w-600">
+      <div class="modal-header">
+        <h2>Request Changes</h2>
+        <button class="modal-close" id="closeChangesModal">&times;</button>
+      </div>
+      <div class="modal-body mt-3">
+        <p class="text-muted font-sm mb-3">
+          Sending this comment moves the article back to <strong>Changes Requested</strong> and notifies the author
+          so they can make edits.
+        </p>
+        <div class="form-group">
+          <label class="form-label">Comment to Author</label>
+          <textarea class="form-control w-100" id="changesComment" rows="5" placeholder="e.g. Please add sources for the statistics in paragraph 3..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:16px;">
+        <button class="btn btn-outline" id="cancelChangesModal">Cancel</button>
+        <button class="btn btn-changes" id="sendChangesRequest">Send to Author</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE PREVIEW MODAL -->
+  <div class="modal-overlay" id="previewModalOverlay">
+    <div class="modal-content max-w-600">
+      <div class="modal-header">
+        <h2>Article Preview</h2>
+        <button class="modal-close" id="closePreviewModal">&times;</button>
+      </div>
+      <div class="modal-body mt-3">
+        <h1 id="previewTitle" style="font-size: 1.5rem; margin-bottom: 10px;"></h1>
+        <div class="mb-3">
+          <span class="badge badge-tag" id="previewAuthor"></span>
+          <span class="badge badge-tag" id="previewCategory"></span>
+          <span class="badge" id="previewStatusBadge"></span>
+        </div>
+        <p id="previewContent" style="line-height: 1.6; color: var(--text-primary);"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT METHOD MODAL -->
+  <div class="modal-overlay" id="paymentMethodModalOverlay">
+    <div class="modal-content max-w-600">
+      <div class="modal-header">
+        <h2>Payment Method</h2>
+        <button class="modal-close" id="closePaymentMethodModal">&times;</button>
+      </div>
+      <div class="modal-body mt-3" id="paymentMethodBody">
+        <!-- populated by admin.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- USER ARTICLES MODAL -->
+  <div class="modal-overlay" id="userArticlesModalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="userArticlesModalTitle">User's Work</h2>
+        <button class="modal-close" id="closeUserArticlesModal">&times;</button>
+      </div>
+      <div class="modal-body mt-3">
+        <table class="data-table" id="userArticlesTable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Views</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="userArticlesTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-toast" id="adminToast"></div>
+
+  <script src="../shared-data.js"></script>
+  <script src="new-admin.js"></script>
+</body>
+
+</html>

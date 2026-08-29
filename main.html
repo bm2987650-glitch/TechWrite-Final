@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TechWrite</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    .page-view {
+      display: none;
+    }
+    .page-view.active-view {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1: Home -->
+  <div id="page-home" class="page-view active-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="active" href="main.html">Home</a>
+          <a class="" href="pages/categories.html">Categories</a>
+          <a class="" href="pages/category.html">AI Tools</a>
+          <a class="" href="guides.html">Guides</a>
+          <a class="" href="pages/about.html">About</a>
+          <a class="" href="pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <div class="eyebrow">EMPOWERING YOUR KNOWLEDGE</div>
+          <h1>
+            Discover. Learn. Grow.
+            <br>
+            Stay ahead with
+            <span>TechWrite.</span>
+          </h1>
+          <p>In-depth articles, AI tools, tutorials and practical tech guides to help you explore the future of
+            technology.</p>
+          <div class="hero-actions">
+            <a class="btn" href="pages/articles.html">Explore Articles</a>
+            <a class="btn dark" href="pages/categories.html">Browse Categories</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">TRENDING</div>
+            <h2>Trending Articles</h2>
+          </div>
+          <a href="pages/articles.html">View all →</a>
+        </div>
+        <div class="cards4" id="trendingGrid">
+          <!-- rendered live from TWStore.getPublishedArticles() -->
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="newsletter">
+        <div class="newsletter-left">
+          <div class="mail-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div>
+            <strong>Stay updated with our latest articles</strong>
+            <p>Subscribe to our newsletter and never miss an update.</p>
+          </div>
+        </div>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button class="btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="main.html">Home</a>
+          <a href="pages/about.html">About</a>
+          <a href="pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="pages/category.html">AI Tools</a>
+          <a href="guides.html">Guides</a>
+          <a href="pages/category.html">Technology</a>
+          <a href="pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE: Guides (NEW SECTION) -->
+  <div id="page-guides" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="main.html">Home</a>
+          <a class="" href="pages/categories.html">Categories</a>
+          <a class="" href="pages/category.html">AI Tools</a>
+          <a class="active" href="guides.html">Guides</a>
+          <a class="" href="pages/about.html">About</a>
+          <a class="" href="pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <h1>Contributor Guides</h1>
+        <p>Learn how to publish articles and join our platform content team.</p>
+      </div>
+      <div class="article-layout">
+        <article class="article-main">
+          <h2>How to Become Part of Our Team</h2>
+          <p>We are always looking for passionate technology writers, developers, and AI enthusiasts to contribute to
+            TechWrite. Here is how you can apply:</p>
+          <ul>
+            <li><strong>Submit an Application:</strong> Go to our <a href="pages/contact.html"
+                style="color:#2563eb;text-decoration:underline">Contact page</a> and select "Join Team" as your message
+              topic.</li>
+            <li><strong>Share Your Portfolio:</strong> Provide links to your previous blog posts, GitHub profile, or
+              writing samples.</li>
+            <li><strong>Review Process:</strong> Our editorial team reviews applications within 3 business days. If
+              approved, you will receive login credentials for the publishing dashboard.</li>
+          </ul>
+
+          <h2 style="margin-top:30px">How to Publish an Article</h2>
+          <p>Follow these steps to submit and publish an article on TechWrite:</p>
+          <ol>
+            <li><strong>Sign In:</strong> Log in to your creator account via the <a href="pages/login.html"
+                style="color:#2563eb;text-decoration:underline">Sign In page</a>.</li>
+            <li><strong>Draft Your Content:</strong> Use our dashboard editor to write your title, paste Markdown text,
+              and add appropriate category tags (e.g., AI Tools, Tutorials).</li>
+            <li><strong>Add Visuals:</strong> Ensure images are high quality, properly credited, and responsive.</li>
+            <li><strong>Submit for Review:</strong> Click "Submit Draft". An editor will review the content for accuracy
+              and formatting before going live.</li>
+          </ol>
+        </article>
+        <aside>
+          <div class="toc">
+            <h3>Quick Resource Links</h3>
+            <a href="pages/contact.html">Apply to Join</a>
+            <a href="pages/login.html">Author Login</a>
+            <a href="pages/about.html">About TechWrite</a>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="main.html">Home</a>
+          <a href="pages/about.html">About</a>
+          <a href="pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="pages/category.html">AI Tools</a>
+          <a href="guides.html">Guides</a>
+          <a href="pages/category.html">Technology</a>
+          <a href="pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 2: About -->
+  <div id="page-about" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="active" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <h1>About TechWrite</h1>
+        <p>Practical technology content for curious readers.</p>
+      </div>
+      <section style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:10px 0 65px">
+        <div>
+          <h2>Learn. Build. Grow.</h2>
+          <p style="color:#64748b;line-height:1.8;font-size:14px">
+            TechWrite brings together useful AI tools, technology guides, tutorials and reviews. Our goal is to make
+            technical topics easier to understand and easier to apply.
+          </p>
+          <p style="color:#64748b;line-height:1.8;font-size:14px">
+            We focus on practical explanations, honest comparisons and useful resources for modern readers.
+          </p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+          style="width:100%;height:310px;object-fit:cover;border-radius:9px" alt="Technology workspace">
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 3: Article (AI Tools Single) -->
+  <div id="page-article" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="" href="../pages/categories.html">Categories</a>
+          <a class="active" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="breadcrumbs" id="articleBreadcrumb">
+        Home &nbsp;›&nbsp; Article
+      </div>
+      <div class="article-layout">
+        <article class="article-main">
+          <div class="tag" id="articleTag">AI TOOLS</div>
+          <h1 id="articleTitle">Loading…</h1>
+          <div class="meta" id="articleMeta">By Admin &nbsp;•&nbsp; &nbsp;•&nbsp;</div>
+          <img class="article-hero" id="articleHero"
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85"
+            alt="">
+
+          <div class="author-box" id="articleAuthorBox" style="display:flex;align-items:center;gap:14px;margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:9px;background:#f8fafc;">
+            <img id="authorBoxAvatar" src="https://i.pravatar.cc/100?img=12" alt=""
+              style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+            <div>
+              <div style="font-weight:800;font-size:14px" id="authorBoxName">Author Name</div>
+              <div style="font-size:11px;color:var(--blue);font-weight:700" id="authorBoxTitle">Job Title</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px" id="authorBoxBio">Author bio.</div>
+            </div>
+          </div>
+
+          <div id="articleBody"></div>
+        </article>
+        <aside>
+          <div class="toc">
+            <h3>Share this article</h3>
+            <div style="display:flex;gap:10px;color:#2563eb">
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+              <i class="fa-brands fa-linkedin"></i>
+            </div>
+            <div class="related">
+              <h3>Related Articles</h3>
+              <div id="relatedArticlesList"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 4: All Articles -->
+  <div id="page-articles" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="active" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <h1>All Articles</h1>
+        <p>Explore our latest articles and guides.</p>
+      </div>
+      <div class="content-layout">
+        <div class="article-list" id="articlesListGrid">
+        </div>
+        <aside class="sidebar" id="articlesPageSidebar">
+          <h3>Categories</h3>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 5: All Categories -->
+  <div id="page-categories" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="active" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <h1>All Categories</h1>
+        <p>Explore content by different topics.</p>
+      </div>
+      <div class="category-grid" id="categoriesGrid">
+        <!-- rendered live from TWStore.getCategoryCounts() -->
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 6: Category Filtered -->
+  <div id="page-category" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="active" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <div class="eyebrow">CATEGORY</div>
+        <h1 id="categoryPageTitle">AI Tools</h1>
+        <p id="categoryPageDesc">Explore the latest articles in this category.</p>
+      </div>
+      <div class="content-layout">
+        <div class="article-list" id="categoryArticleList">
+        </div>
+        <aside class="sidebar" id="categoryPageSidebar">
+          <h3>Categories</h3>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 7: Contact -->
+  <div id="page-contact" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="active" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Send us a message!</p>
+      </div>
+    </section>
+    <main class="container contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <strong>Email</strong>
+            <span>hello@techwrite.com</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <strong>Phone</strong>
+            <span>+1 (555) 123-4567</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <strong>Location</strong>
+            <span>New York, USA</span>
+          </div>
+        </div>
+        <div>
+          <strong style="font-size:12px">Follow Us</strong>
+          <div style="display:flex;gap:14px;margin-top:10px;color:#2563eb">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+          </div>
+        </div>
+      </div>
+      <div class="form-card">
+        <form id="contactForm">
+          <div class="field">
+            <label>Full Name</label>
+            <input placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field">
+            <label>Subject</label>
+            <input placeholder="How can we help?">
+          </div>
+          <div class="field">
+            <label>Message</label>
+            <textarea placeholder="Write your message..." required></textarea>
+          </div>
+          <button class="btn" style="width:100%">Send Message</button>
+        </form>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 8: Sign In / Login -->
+  <div id="page-login" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container" style="min-height:580px;display:grid;place-items:center">
+    <div class="form-card" style="width:min(420px,100%)">
+      <h1 style="font-size:25px">Sign In</h1>
+      <p class="muted">Access the TechWrite publishing dashboard.</p>
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@techwrite.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="••••••••" required>
+        </div>
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="admin">Admin</option>
+            <option value="author">Author</option>
+          </select>
+          <p class="muted" style="margin-top:8px">Forgot your password? <a href="#">Reset it</a></p>
+        </div>
+        <button class="btn" style="width:100%">Sign In</button>
+        <div id="loginError" class="muted" style="color:#dc2626;display:none;margin-top:10px;"></div>
+      </form>
+      <p class="muted" style="margin-top:12px">
+        <strong>Demo Logins:</strong><br>
+        Admin: admin@techwrite.com / admin@123<br>
+        Author: user@techwrite.com / user@123
+      </p>
+    </div>
+  </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- PAGE 9: Search -->
+  <div id="page-search" class="page-view">
+    <header class="nav">
+      <div class="container">
+        <a class="logo" href="../main.html">
+          <i class="fa-solid fa-bolt"></i>
+          Tech
+          <span>Write</span>
+        </a>
+        <nav class="navlinks">
+          <a class="" href="../main.html">Home</a>
+          <a class="" href="../pages/categories.html">Categories</a>
+          <a class="" href="../pages/category.html">AI Tools</a>
+          <a class="" href="../guides.html">Guides</a>
+          <a class="" href="../pages/about.html">About</a>
+          <a class="" href="../pages/contact.html">Contact</a>
+        </nav>
+        <div class="nav-actions">
+          <button class="search-btn" data-search aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <a class="btn" href="../pages/login.html">Sign In</a>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="page-title">
+        <h1>Search Results</h1>
+        <p>Find articles by title, category or topic.</p>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:20px">
+        <input id="searchInput" placeholder="Search articles..."
+          style="flex:1;padding:12px;border:1px solid #dbe2ea;border-radius:6px">
+        <button id="searchBtn" class="btn">Search</button>
+      </div>
+      <div id="searchResults" class="content-layout">
+        <div class="article-list" id="searchListGrid">
+        </div>
+        <aside class="sidebar" id="searchSidebar">
+          <h3>Categories</h3>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="../main.html">
+            <i class="fa-solid fa-bolt"></i>
+            Tech
+            <span>Write</span>
+          </a>
+          <p>Your go-to destination for AI tools, technology guides and practical tutorials.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="../main.html">Home</a>
+          <a href="../pages/about.html">About</a>
+          <a href="../pages/contact.html">Contact</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div>
+          <h4>Categories</h4>
+          <a href="../pages/category.html">AI Tools</a>
+          <a href="../guides.html">Guides</a>
+          <a href="../pages/category.html">Technology</a>
+          <a href="../pages/category.html">Tutorials</a>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <p>Subscribe to get the latest articles straight to your inbox.</p>
+          <form class="newsletter-form">
+            <input placeholder="Enter your email"
+              style="padding:9px;width:100%;border-radius:5px;border:1px solid #314158">
+            <button class="btn" style="margin-top:8px">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 TechWrite. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- External Script Dependencies -->
+  <script src="shared-data.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

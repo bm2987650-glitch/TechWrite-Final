@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Write - User Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="new-user.css" />
+</head>
+
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <i class="fa-solid fa-bolt brand-icon"></i>
+      <span class="brand-name">Tech <span>Write</span></span>
+    </div>
+    <a href="../main.html" class="nav-item" style="margin:0 10px 6px;font-size:0.8rem;">
+      <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>View Live Site</span>
+    </a>
+
+    <nav class="nav-menu">
+      <a href="#" class="nav-item active" data-tab="dashboard">
+        <i class="fa-solid fa-house"></i> <span>My Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="articles">
+        <i class="fa-solid fa-file-lines"></i> <span>My Articles</span> <span class="badge badge-new">New</span>
+      </a>
+      <a href="#" class="nav-item btn-create" data-tab="create">
+        <i class="fa-solid fa-plus"></i> <span>Create New</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="analytics">
+        <i class="fa-solid fa-chart-simple"></i> <span>Analytics</span>
+      </a>
+
+      <a href="#" class="nav-item" data-tab="profile">
+        <i class="fa-solid fa-gear"></i> <span>Profile &amp; Account</span>
+      </a>
+      <a href="#" class="nav-item" data-tab="payouts">
+        <i class="fa-solid fa-dollar-sign"></i> <span>Payouts</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../main.html" id="logoutLink" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-wrapper">
+    <!-- Top Header -->
+    <header class="top-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="header-right">
+        <div class="icon-btn"><i class="fa-regular fa-bell"></i></div>
+        <div class="user-profile-dropdown" id="userDropdown">
+          <img src="https://i.pravatar.cc/100?img=12" alt="John Doe" class="avatar" />
+          <div class="user-info">
+            <span class="user-role">User</span>
+            <span class="user-name">John Doe <i class="fa-solid fa-chevron-down"></i></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-body">
+      <!-- 1. DASHBOARD TAB -->
+      <section class="tab-content active" id="tab-dashboard">
+        <h1 class="page-title" id="dashboardWelcome">Welcome, John!</h1>
+
+        <div class="stats-grid">
+          <div class="stat-card card-teal">
+            <div class="stat-header">
+              <span class="stat-title">Published Articles</span>
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+            <div class="stat-value" id="statPublished">0</div>
+            <div class="stat-sub">Live on the site</div>
+          </div>
+          <div class="stat-card card-light-green">
+            <div class="stat-header">
+              <span class="stat-title">Pending Review</span>
+              <span class="pill-count" id="statPendingPill">0</span>
+            </div>
+            <div class="stat-value" id="statPending">0</div>
+          </div>
+          <div class="stat-card card-beige">
+            <div class="stat-header"><span class="stat-title">Drafts</span></div>
+            <div class="stat-value" id="statDrafts">0</div>
+          </div>
+          <div class="stat-card card-pink">
+            <div class="stat-header"><span class="stat-title">Followers</span></div>
+            <div class="stat-value" id="statFollowers">0</div>
+          </div>
+          <div class="stat-card card-light-blue">
+            <div class="stat-header">
+              <span class="stat-title">Article Views</span>
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="stat-value" id="statViews">0</div>
+          </div>
+          <div class="stat-card card-purple">
+            <div class="stat-header"><span class="stat-title">Total Tips/Earnings</span></div>
+            <div class="stat-value" id="statEarnings">$0.00</div>
+          </div>
+        </div>
+
+        <div class="panel mt-4" id="feedbackBanner" style="display:none;border-color:#f59e0b;background:#fffbeb;">
+          <h3 style="margin-bottom:10px"><i class="fa-solid fa-comment-dots" style="color:#b45309;margin-right:6px"></i>Admin Feedback</h3>
+          <div id="feedbackBannerList"></div>
+        </div>
+
+        <div class="dashboard-panels">
+          <div class="panel">
+            <h3>My Recent Activity</h3>
+            <ul class="activity-list">
+              <li>
+                <i class="fa-solid fa-rotate-right activity-icon"></i>
+                <div>
+                  <strong>User John Doe</strong> updated My New Article Draft
+                  <span class="time-ago">5 mins ago</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-dot activity-icon warning"></i>
+                <div>
+                  <strong>Awaiting Editor</strong> - Advanced Tech
+                  <span class="time-ago">1 hr ago</span>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check activity-icon success"></i>
+                <div>
+                  <strong>Published</strong> Top AI Trends
+                  <span class="badge badge-published">Published</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Analytics Snapshot</h3>
+              <select class="form-select-sm" id="dashboardChartSelect">
+                <option value="weekly">Weekly View</option>
+                <option value="monthly">Monthly View</option>
+              </select>
+            </div>
+
+            <div class="bar-chart-mock" id="weeklyView">
+              <div class="bar-group">
+                <div class="bar b1" style="height: 60%"></div>
+                <div class="bar b2" style="height: 45%"></div><span>Mon</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 85%"></div>
+                <div class="bar b2" style="height: 65%"></div><span>Tue</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 75%"></div>
+                <div class="bar b2" style="height: 55%"></div><span>Wed</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 65%"></div>
+                <div class="bar b2" style="height: 40%"></div><span>Thu</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 70%"></div>
+                <div class="bar b2" style="height: 50%"></div><span>Fri</span>
+              </div>
+            </div>
+
+            <div class="bar-chart-mock d-none" id="monthlyView">
+              <div class="bar-group">
+                <div class="bar b1" style="height: 40%"></div>
+                <div class="bar b2" style="height: 30%"></div><span>Week 1</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 65%"></div>
+                <div class="bar b2" style="height: 50%"></div><span>Week 2</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 85%"></div>
+                <div class="bar b2" style="height: 70%"></div><span>Week 3</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar b1" style="height: 55%"></div>
+                <div class="bar b2" style="height: 45%"></div><span>Week 4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. MY ARTICLES TAB -->
+      <section class="tab-content" id="tab-articles">
+        <div class="articles-header">
+          <h1>My Articles</h1>
+          <button class="btn btn-primary" onclick="switchTab('create')">+ Create New</button>
+        </div>
+
+        <div class="table-filters">
+          <input type="text" id="searchInput" placeholder="Search title or tags..." class="form-control" />
+
+          <select class="form-select" id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="published">Published</option>
+            <option value="review">Under Review</option>
+          </select>
+
+          <select class="form-select" id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="AI Tools">AI Tools</option>
+            <option value="Guides">Guides</option>
+            <option value="Technology">Technology</option>
+            <option value="AI Image">AI Image</option>
+            <option value="Tutorials">Tutorials</option>
+            <option value="Productivity">Productivity</option>
+            <option value="News">News</option>
+            <option value="Reviews">Reviews</option>
+          </select>
+
+          <select class="form-select" id="sortFilter">
+            <option value="default">Sort by</option>
+            <option value="title-asc">Title (A-Z)</option>
+            <option value="views-desc">Views (High to Low)</option>
+            <option value="date-desc">Date (Newest First)</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date Published</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Views</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="articlesTableBody">
+              <tr data-status="published" data-title="My Recent Article Test" data-category="AI Tools" data-views="235"
+                data-date="2023-01-15" data-tags="AI Tools, Web Design" data-slug="my-recent-article-test"
+                data-content="This is the full article body text for My Recent Article Test. Detailed insights on web development and design.">
+                <td>
+                  <div class="article-title-cell">
+                    <img src="https://picsum.photos/40/40?random=1" class="article-thumb" />
+                    <div>
+                      <strong>My Recent Article Test</strong>
+                      <a href="#" class="article-link">https://tech-write.com <i
+                          class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                  </div>
+                </td>
+                <td>Jan 15, 2023</td>
+                <td><span class="badge badge-tag">AI Tools</span> <span class="badge badge-tag">Web Design</span></td>
+                <td><span class="badge badge-published">Published</span></td>
+                <td>235</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-edit-article">Edit</button>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+
+              <tr data-status="review" data-title="Top AI Tools Academic Review" data-category="Guides" data-views="150"
+                data-date="2023-01-12" data-tags="Guides, AI Tools" data-slug="top-ai-tools-review"
+                data-content="Comprehensive academic breakdown of leading AI tools available for modern content creation.">
+                <td>
+                  <div class="article-title-cell">
+                    <img src="https://picsum.photos/40/40?random=2" class="article-thumb" />
+                    <div>
+                      <strong>Top AI Tools Academic Review</strong>
+                      <a href="#" class="article-link">https://tech-write.com <i
+                          class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                  </div>
+                </td>
+                <td>Jan 12, 2023</td>
+                <td><span class="badge badge-tag">Guides</span></td>
+                <td><span class="badge badge-warning">Under Review</span></td>
+                <td>150</td>
+                <td>
+                  <button class="btn btn-sm btn-outline btn-edit-article">Edit</button>
+                  <button class="btn btn-sm btn-outline btn-view-article">View</button>
+                  <button class="btn btn-sm btn-danger btn-delete-article">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. CREATE NEW TAB -->
+      <section class="tab-content" id="tab-create">
+        <div class="articles-header">
+          <h1>Create New</h1>
+        </div>
+        <div class="editor-layout">
+          <div class="editor-main-panel">
+            <input type="text" class="form-control title-input" placeholder="Title" />
+
+            <div class="wysiwyg-toolbar">
+              <button type="button"><i class="fa-solid fa-bold"></i></button>
+              <button type="button"><i class="fa-solid fa-italic"></i></button>
+              <button type="button"><i class="fa-solid fa-underline"></i></button>
+              <button type="button"><i class="fa-solid fa-strikethrough"></i></button>
+              <button type="button"><i class="fa-solid fa-link"></i></button>
+              <button type="button"><i class="fa-solid fa-image"></i></button>
+              <button type="button"><i class="fa-solid fa-list-ul"></i></button>
+              <button type="button"><i class="fa-solid fa-list-ol"></i></button>
+              <button type="button"><i class="fa-solid fa-quote-right"></i></button>
+            </div>
+
+            <div class="upload-area">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+              <p class="upload-title">Upload Image or File</p>
+            </div>
+
+            <textarea class="form-control content-textarea" rows="10" placeholder="Enter your text here..."></textarea>
+          </div>
+
+          <div class="editor-side-panel">
+            <div class="panel">
+              <h3>Document Settings</h3>
+
+              <div class="setting-toggle-row mt-3">
+                <label for="schedulePublish">Schedule Publish</label>
+                <label class="switch">
+                  <input type="checkbox" id="schedulePublish">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="Article Title..." />
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Category</label>
+                <select class="form-select w-100">
+                  <option value="AI Tools">AI Tools</option>
+                  <option value="Guides">Guides</option>
+                  <option value="Technology">Technology</option>
+                  <option value="AI Image">AI Image</option>
+                  <option value="Tutorials">Tutorials</option>
+                  <option value="Productivity">Productivity</option>
+                  <option value="News">News</option>
+                  <option value="Reviews">Reviews</option>
+                </select>
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Tags</label>
+                <input type="text" class="form-control" placeholder="Tags (comma separated)" />
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Slug</label>
+                <input type="text" class="form-control" placeholder="e.g. image-address" />
+              </div>
+
+              <div class="editor-actions mt-4">
+                <button class="btn btn-primary btn-block">Publish</button>
+                <button class="btn btn-outline btn-block mt-2">Save Draft</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- 5. ANALYTICS TAB -->
+      <section class="tab-content" id="tab-analytics">
+        <div class="articles-header">
+          <h1>Analytics</h1>
+        </div>
+
+        <div class="analytics-grid">
+          <div class="panel chart-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Analytics Snapshot</h3>
+                <span class="text-muted font-sm">Total Views Over Time</span>
+              </div>
+              <div class="date-picker-container" style="display: flex; gap: 8px; align-items: center;">
+                <input type="date" id="analyticsStartDate" class="form-control" value="2026-08-01"
+                  style="font-size: 0.8rem; padding: 4px 8px;" />
+                <span class="text-muted font-sm">to</span>
+                <input type="date" id="analyticsEndDate" class="form-control" value="2026-08-23"
+                  style="font-size: 0.8rem; padding: 4px 8px;" />
+              </div>
+            </div>
+            <div class="chart-area-placeholder">
+              <svg class="analytics-line-svg" viewBox="0 0 500 120" id="analyticsChartSvg">
+                <path id="analyticsChartPath" d="M0,80 Q70,40 120,50 T240,20 T360,60 T500,10" fill="none"
+                  stroke="#148f96" stroke-width="3" />
+              </svg>
+              <div class="chart-x-axis" id="analyticsXAxis">
+                <span>08/01</span><span>08/05</span><span>08/09</span><span>08/13</span><span>08/17</span><span>08/21</span><span>08/23</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel metrics-sidebar-panel">
+            <h3>Avg. Read Time <i class="fa-solid fa-ellipsis"></i></h3>
+            <div class="metric-row"><i class="fa-regular fa-clock"></i> <span>Avg. Read Time</span> <strong
+                id="metricAvgReadTime">00:09</strong></div>
+            <div class="metric-row"><i class="fa-solid fa-chart-pie"></i> <span>Bounce Rate</span> <strong
+                id="metricBounceRate">59.8%</strong></div>
+            <div class="metric-row"><i class="fa-solid fa-chart-line"></i> <span>Time Spent Rate</span> <strong
+                id="metricTimeSpentRate">0.5%</strong></div>
+            <div class="metric-row"><i class="fa-solid fa-eye"></i> <span>See Views Rate</span> <strong
+                id="metricViewsRate">8.0%</strong></div>
+            <div class="metric-row"><i class="fa-solid fa-layer-group"></i> <span>Total Views</span> <strong
+                id="metricTotalViews">0</strong></div>
+          </div>
+        </div>
+
+        <div class="stats-grid mt-4">
+          <div class="stat-card card-light-blue">
+            <span class="stat-title">Avg. Read Time</span>
+            <div class="stat-value" id="cardAvgReadTime">1.1 hrs</div>
+          </div>
+          <div class="stat-card card-light-green">
+            <span class="stat-title">Bounce Rate</span>
+            <div class="stat-value" id="cardBounceRate">89%</div>
+          </div>
+          <div class="stat-card card-pink">
+            <span class="stat-title">Active Readers</span>
+            <div class="stat-value" id="cardActiveReaders">15</div>
+          </div>
+          <div class="stat-card card-purple">
+            <span class="stat-title">Total Tips/Earnings</span>
+            <div class="stat-value" id="cardTotalEarnings">$189.50</div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- PROFILE & ACCOUNT TAB -->
+      <section class="tab-content" id="tab-profile">
+        <div class="articles-header">
+          <h1>Profile & Account</h1>
+        </div>
+
+        <form id="profileAccountForm">
+          <!-- Main Profile Settings -->
+          <div class="panel mb-4">
+            <h3 class="mb-3">Public Profile</h3>
+
+            <div class="d-flex align-items-center gap-4 mb-4 flex-wrap">
+              <div class="profile-avatar-wrapper" style="position: relative; width: 90px; height: 90px;">
+                <img src="https://i.pravatar.cc/100?img=12" id="profileAvatarPreview" alt="Profile"
+                  style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color);" />
+              </div>
+              <div>
+                <input type="file" id="profilePicInput" accept="image/*" style="display: none;" />
+                <button type="button" class="btn btn-outline btn-sm mb-1"
+                  onclick="document.getElementById('profilePicInput').click()">Change Picture</button>
+              </div>
+            </div>
+
+            <div class="form-grid"
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label" >Full Name</label>
+                <input type="text" id="profileFullName" class="form-control-name" value="Alex Morgan" required />
+              </div>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Job Title / Role</label>
+                <input type="text" id="profileJobTitle" class="form-control-title" value="Senior Tech Writer" />
+              </div>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="profileEmail" class="form-control-email" value="alex.morgan@example.com" required />
+              </div>
+              <div class="form-group-bio" style="grid-column: 1 / -1;">
+                <label class="form-label-bio">Bio</label>
+                <textarea id="profileBio" class="form-control-bio"
+                  rows="3">Technology enthusiast and writer covering AI, software development, and modern tech trends.</textarea>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+              <span id="profileSaveStatus" class="ms-2 font-sm" style="display: none;"></span>
+            </div>
+          </div>
+        </form>
+
+        <!-- Security & Password -->
+        <div class="panel mb-4">
+          <h3 class="mb-3">Security & Password</h3>
+          <form id="changePasswordForm">
+            <div id="passwordAlert" class="alert-message mb-3"
+              style="display: none; padding: 10px 14px; border-radius: 6px; font-size: 0.875rem;"></div>
+
+            <div class="form-grid"
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+              <div class="form-group">
+                <label class="form-label">Current Password</label>
+                <input type="password" id="currentPassword" class="form-control" placeholder="••••••••" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">New Password</label>
+                <input type="password" id="newPassword" class="form-control" placeholder="••••••••" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Confirm New Password</label>
+                <input type="password" id="confirmNewPassword" class="form-control" placeholder="••••••••" required />
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <button type="submit" class="btn btn-outline">Change Password</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Two-Factor Authentication (2FA) -->
+        <div class="panel mb-4">
+          <h3 class="mb-2">Two-Factor Authentication (2FA)</h3>
+          <p class="text-muted font-sm mb-4">Verify your contact details to enable two-step verification and protect
+            your account.</p>
+
+          <div class="verification-container"
+            style="display: flex; flex-direction: column; gap: 16px; max-width: 600px;">
+            <!-- Gmail Verification -->
+            <div class="form-group">
+              <label class="form-label">Gmail Verification</label>
+              <div class="verify-inline-group" style="display: flex; gap: 10px; align-items: center;">
+                <input type="email" id="verifyGmailInput" class="form-control" value="alex.morgan@gmail.com"
+                  placeholder="Enter Gmail address" />
+                <button type="button" class="btn-verify-black" id="btnVerifyGmail">Verify Gmail</button>
+              </div>
+            </div>
+
+            <!-- Phone Verification -->
+            <div class="form-group">
+              <label class="form-label">Phone Number Verification</label>
+              <div class="verify-inline-group" style="display: flex; gap: 10px; align-items: center;">
+                <input type="tel" id="verifyPhoneInput" class="form-control" value="+1 (555) 019-2834"
+                  placeholder="Enter Phone Number" />
+                <button type="button" class="btn-verify-black" id="btnVerifyPhone">Verify Number</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Settings -->
+        <div class="panel">
+          <h3 class="mb-3">Privacy Settings</h3>
+          <div class="privacy-settings-list" style="display: flex; flex-direction: column; gap: 14px;">
+            <label class="privacy-toggle-item"
+              style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+              <div>
+                <strong>Public Profile Visibility</strong>
+                <div class="text-muted font-sm">Allow non-registered users to search and view your author profile.</div>
+              </div>
+              <input type="checkbox" id="privacyPublicProfile" checked
+                style="width: 18px; height: 18px; accent-color: #000;" />
+            </label>
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 0;" />
+            <label class="privacy-toggle-item"
+              style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+              <div>
+                <strong>Search Engine Indexing</strong>
+                <div class="text-muted font-sm">Allow search engines like Google to index your published articles and
+                  profile.</div>
+              </div>
+              <input type="checkbox" id="privacySearchIndex" checked
+                style="width: 18px; height: 18px; accent-color: #000;" />
+            </label>
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 0;" />
+            <label class="privacy-toggle-item"
+              style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+              <div>
+                <strong>Usage & Analytics Data Sharing</strong>
+                <div class="text-muted font-sm">Share anonymous usage metrics to help improve platform features.</div>
+              </div>
+              <input type="checkbox" id="privacyAnalyticsData" style="width: 18px; height: 18px; accent-color: #000;" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. PAYOUTS TAB -->
+<section class="tab-content" id="tab-payouts">
+  <div class="articles-header">
+    <h1>Payouts</h1>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card card-teal">
+      <span class="stat-title">Total Paid Out</span>
+      <div class="stat-value" id="payoutTotalPaid">$0.00</div>
+    </div>
+    <div class="stat-card card-beige">
+      <span class="stat-title">Amount to Request</span>
+      <input type="number" id="payoutRequestAmount" class="form-control mt-2" min="1" step="0.01" value="15.00" style="max-width:140px" />
+    </div>
+    <div class="stat-card card-pink">
+      <span class="stat-title">Last Payout</span>
+      <div class="stat-value" id="payoutLastDate">—</div>
+    </div>
+  </div>
+
+  <div class="panel mt-4">
+    <div class="panel-header" style="align-items: center;">
+      <h3>Payout History</h3>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span id="payoutRequestMsg" style="color: #10b981; font-weight: 600; display: none;">Request send</span>
+        <button class="btn btn-primary btn-sm" id="btnRequestPayout">Request Payout</button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="payoutHistoryBody">
+          <tr>
+            <td>Jul 18, 2026</td>
+            <td class="fw-bold">$18.00</td>
+            <td>PayPal</td>
+            <td><span class="badge badge-published">Completed</span></td>
+          </tr>
+          <tr>
+            <td>Jun 23, 2026</td>
+            <td class="fw-bold">$1.00</td>
+            <td>PayPal</td>
+            <td><span class="badge badge-warning">Processing</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider my-4" />
+
+    <h3>Set Up Payment Method</h3>
+    <div class="payment-methods-row mt-3">
+      <button type="button" class="btn btn-outline" id="btnBankMethod"><i class="fa-solid fa-building-columns"></i> Bank</button>
+      <button type="button" class="btn btn-outline" id="btnPaypalMethod"><i class="fa-brands fa-paypal"></i> PayPal</button>
+    </div>
+
+    <!-- Bank Form -->
+    <form id="bankPaymentForm" class="mt-4 d-none" style="max-width: 600px;">
+      <h4 class="mb-3">Bank Transfer Details</h4>
+      
+      <div class="form-group mb-3">
+        <label class="form-label">Account Holder Name</label>
+        <input type="text" id="bankHolderInput" class="form-control w-100" placeholder="e.g. John Doe" required />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label">Country</label>
+        <select class="form-select w-100" id="payoutCountrySelect" required>
+          <option value="">Select Country</option>
+          <option value="United States">United States</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Canada">Canada</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label">Bank</label>
+        <select class="form-select w-100" id="payoutBankSelect" required disabled>
+          <option value="">Select Bank</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label">IBAN Number</label>
+        <input type="text" id="bankIbanInput" class="form-control w-100" placeholder="Enter IBAN (e.g. PK36SCBL0000001123456701)" required />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label">SWIFT / BIC Code</label>
+        <input type="text" id="bankSwiftInput" class="form-control w-100" placeholder="e.g. SCBLPKKK" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save Bank Details</button>
+    </form>
+
+    <!-- PayPal Form -->
+    <form id="paypalPaymentForm" class="mt-4 d-none" style="max-width: 600px;">
+      <h4 class="mb-3">PayPal Details</h4>
+
+      <div class="form-group mb-3">
+        <label class="form-label">PayPal Email Address</label>
+        <input type="email" id="paypalEmailInput" class="form-control w-100" placeholder="e.g. yourname@paypal.com" required />
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label">Confirm PayPal Email Address</label>
+        <input type="email" id="paypalConfirmInput" class="form-control w-100" placeholder="Re-enter your PayPal email" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save PayPal Details</button>
+    </form>
+  </div>
+</section>
+    </main>
+  </div>
+
+  <!-- EDIT ARTICLE MODAL -->
+  <div class="modal-overlay" id="editModalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Article</h2>
+        <button class="modal-close" id="closeEditModal">&times;</button>
+      </div>
+      <form id="editArticleForm">
+        <div class="editor-layout mt-3">
+          <div class="editor-main-panel">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="editTitle" class="form-control" required />
+            </div>
+
+            <div class="wysiwyg-toolbar mt-2">
+              <button type="button"><i class="fa-solid fa-bold"></i></button>
+              <button type="button"><i class="fa-solid fa-italic"></i></button>
+              <button type="button"><i class="fa-solid fa-underline"></i></button>
+              <button type="button"><i class="fa-solid fa-link"></i></button>
+            </div>
+
+            <div class="form-group mt-2">
+              <label>Content</label>
+              <textarea id="editContent" class="form-control content-textarea" rows="8"></textarea>
+            </div>
+          </div>
+
+          <div class="editor-side-panel">
+            <div class="panel">
+              <div class="form-group">
+                <label>Category</label>
+                <select id="editCategory" class="form-select w-100">
+                  <option value="AI Tools">AI Tools</option>
+                  <option value="Guides">Guides</option>
+                  <option value="Technology">Technology</option>
+                  <option value="AI Image">AI Image</option>
+                  <option value="Tutorials">Tutorials</option>
+                  <option value="Productivity">Productivity</option>
+                  <option value="News">News</option>
+                  <option value="Reviews">Reviews</option>
+                </select>
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Tags</label>
+                <input type="text" id="editTags" class="form-control" />
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Slug</label>
+                <input type="text" id="editSlug" class="form-control" />
+              </div>
+
+              <div class="form-group mt-3">
+                <label>Status</label>
+                <select id="editStatus" class="form-select w-100">
+                  <option value="published">Published</option>
+                  <option value="review">Under Review</option>
+                </select>
+              </div>
+
+              <div class="mt-4">
+                <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PREVIEW ARTICLE MODAL -->
+  <div class="modal-overlay" id="previewModalOverlay">
+    <div class="modal-content max-w-600">
+      <div class="modal-header">
+        <h2>Article Preview</h2>
+        <button class="modal-close" id="closePreviewModal">&times;</button>
+      </div>
+      <div class="modal-body mt-3">
+        <h1 id="previewTitle" style="font-size: 1.5rem; margin-bottom: 10px;"></h1>
+        <div class="mb-3">
+          <span class="badge badge-tag" id="previewCategory"></span>
+          <span class="badge" id="previewStatusBadge"></span>
+        </div>
+        <p id="previewContent" style="line-height: 1.6; color: var(--text-primary);"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../shared-data.js"></script>
+  <script src="new-user.js"></script>
+</body>
+
+</html>
